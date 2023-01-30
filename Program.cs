@@ -14,6 +14,7 @@ builder.Services.AddDbContext<AppDbContext>(options => {
 });
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using rest_api_items.Domain.Models;
+using rest_api_items.Extensions;
 using rest_api_items.Resources;
 using rest_api_items.Services.IServices;
 
@@ -25,6 +26,20 @@ namespace rest_api_items.Controllers
             var resources = _mapper.Map<IEnumerable<Item>,IEnumerable<ItemResource>>(items);
 
             return resources;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] SaveItemResource resource)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
+
+            var items = _mapper.Map<SaveItemResource, Item>(resource);
+            var result = await _itemService.SaveAsync(items);
+
+            if (!result.Success) return BadRequest(result.Message);
+
+            var itemResource = _mapper.Map<Item, ItemResource>(result.Item);
+            return Ok(itemResource);
         }
     }
 }

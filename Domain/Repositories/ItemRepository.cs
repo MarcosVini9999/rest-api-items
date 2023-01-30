@@ -13,5 +13,10 @@ namespace rest_api_items.Domain.Repositories
         {
             return await _context.Items.ToListAsync();
         }
+
+        public async Task AddAsync(Item item)
+        {
+            await _context.Items.AddAsync(item);
+        }
     }
 }
