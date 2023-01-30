@@ -6,5 +6,7 @@ namespace rest_api_items.Domain.Repositories.IRepositories
     {
         Task<IEnumerable<Item>> ListAsync();
         Task AddAsync(Item item);
+        Task<Item> FindByIdAsync(int id);
+        void Update(Item item);
     }
 }

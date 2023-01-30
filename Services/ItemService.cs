@@ -21,20 +21,43 @@ namespace rest_api_items.Services
             return await _itemRepository.ListAsync();
         }
 
-        public async Task<ItemResponse> SaveAsync(Item category)
+        public async Task<ItemResponse> SaveAsync(Item item)
         {
             try
             {
-                await _itemRepository.AddAsync(category);
+                await _itemRepository.AddAsync(item);
                 await _unitOfWork.CompleteAsync();
 
-                return new ItemResponse(category);
+                return new ItemResponse(item);
             }
             catch (Exception ex)
             {
-                // Do some logging stuff
                 return new ItemResponse($"ERROR saving item: {ex.Message}");
             }
         }
+
+        public async Task<ItemResponse> UpdateAsync(int id, Item item)
+        {
+            var existingItem = await _itemRepository.FindByIdAsync(id);
+
+            if (existingItem == null) return new ItemResponse("ERROR: Item not found.");
+
+            existingItem.Name = item.Name;
+            existingItem.ManufacturerName = item.ManufacturerName;
+            existingItem.Model = item.Model;
+
+            try
+            {
+                _itemRepository.Update(existingItem);
+                await _unitOfWork.CompleteAsync();
+
+                return new ItemResponse(existingItem);
+            }
+            catch (Exception ex)
+            {
+                return new ItemResponse($"ERROR updating item: {ex.Message}");
+            }
+        }
+
     }
 }

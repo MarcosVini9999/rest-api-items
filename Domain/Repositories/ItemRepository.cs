@@ -18,5 +18,15 @@ namespace rest_api_items.Domain.Repositories
         {
             await _context.Items.AddAsync(item);
         }
+
+        public async Task<Item> FindByIdAsync(int id)
+        {
+            return await _context.Items.FindAsync(id);
+        }
+
+        public void Update(Item item)
+        {
+            _context.Items.Update(item);
+        }
     }
 }

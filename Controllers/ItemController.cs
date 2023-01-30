@@ -41,5 +41,19 @@ namespace rest_api_items.Controllers
             var itemResource = _mapper.Map<Item, ItemResource>(result.Item);
             return Ok(itemResource);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveItemResource resource)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState.GetErrorMessages());
+
+            var items = _mapper.Map<SaveItemResource, Item>(resource);
+            var result = await _itemService.UpdateAsync(id, items);
+
+            if (!result.Success) return BadRequest(result.Message);
+
+            var itemResource = _mapper.Map<Item, ItemResource>(result.Item);
+            return Ok(itemResource);
+        }
     }
 }
