@@ -7,6 +7,7 @@ using rest_api_items.Services.IServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options => {
     options.UseInMemoryDatabase("groceries-api-in-memory");

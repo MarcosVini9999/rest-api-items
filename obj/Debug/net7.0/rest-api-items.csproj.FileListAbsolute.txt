@@ -35,3 +35,5 @@ D:\Projetos Web\rest-api-items\obj\Debug\net7.0\refint\rest-api-items.dll
 D:\Projetos Web\rest-api-items\obj\Debug\net7.0\rest-api-items.pdb
 D:\Projetos Web\rest-api-items\obj\Debug\net7.0\rest-api-items.genruntimeconfig.cache
 D:\Projetos Web\rest-api-items\obj\Debug\net7.0\ref\rest-api-items.dll
+D:\Projetos Web\rest-api-items\bin\Debug\net7.0\AutoMapper.dll
+D:\Projetos Web\rest-api-items\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
