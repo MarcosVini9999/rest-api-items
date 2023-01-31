@@ -4,13 +4,13 @@ A project made in .NET, EF core and AutoMapper, for understanding the MVC model
 
 ![swagger_banner](./assets/images/swagger_image.png)
 
-## 🛠️ Tecnologias
+## 🛠️ Technologies
 
 1. [.NET](https://dotnet.microsoft.com/pt-br/)
 2. [Microsoft Entity Framework Core](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore)
 3. AutoMapper
 
-## 📷 Imagens de testes com o PostMan
+## 📷 Tests with postman
 
 - GET
   ![swagger_banner](./assets/images/test_get.png)
