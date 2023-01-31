@@ -55,5 +55,16 @@ namespace rest_api_items.Controllers
             var itemResource = _mapper.Map<Item, ItemResource>(result.Item);
             return Ok(itemResource);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _itemService.DeleteAsync(id);
+
+            if (!result.Success) return BadRequest(result.Message);
+
+            var itemResource = _mapper.Map<Item, ItemResource>(result.Item);
+            return Ok(itemResource);
+        }
     }
 }

@@ -28,5 +28,11 @@ namespace rest_api_items.Domain.Repositories
         {
             _context.Items.Update(item);
         }
+
+        public void Remove(Item item)
+        {
+            _context.Items.Remove(item);
+        }
+
     }
 }

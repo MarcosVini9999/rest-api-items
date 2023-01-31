@@ -8,5 +8,6 @@ namespace rest_api_items.Services.IServices
         Task<IEnumerable<Item>> ListAsync();
         Task<ItemResponse> SaveAsync(Item item);
         Task<ItemResponse> UpdateAsync(int id, Item item);
+        Task<ItemResponse> DeleteAsync(int id);
     }
 }

@@ -59,5 +59,23 @@ namespace rest_api_items.Services
             }
         }
 
+        public async Task<ItemResponse> DeleteAsync(int id)
+        {
+            var existingItem = await
+            _itemRepository.FindByIdAsync(id);
+
+            if (existingItem == null)
+                return new ItemResponse("ERROR: Item not found.");
+            try
+            {
+                _itemRepository.Remove(existingItem);
+                await _unitOfWork.CompleteAsync();
+                return new ItemResponse(existingItem);
+            }
+            catch (Exception ex)
+            {
+                return new ItemResponse($"ERROR deleting item: {ex.Message}");
+            }
+        }
     }
 }
