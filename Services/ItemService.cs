@@ -21,6 +21,15 @@ namespace rest_api_items.Services
             return await _itemRepository.ListAsync();
         }
 
+        public async Task<ItemResponse> ListOnlyOneAsync(int id)
+        {
+            var existingItem = await _itemRepository.FindByIdAsync(id);
+
+            if (existingItem == null) return new ItemResponse("ERROR: Item not found.");
+
+            return new ItemResponse(existingItem);
+        }
+
         public async Task<ItemResponse> SaveAsync(Item item)
         {
             try

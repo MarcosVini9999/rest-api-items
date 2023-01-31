@@ -28,6 +28,17 @@ namespace rest_api_items.Controllers
             return resources;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOnlyOne(int id)
+        {
+            var result = await _itemService.ListOnlyOneAsync(id);
+            
+            if (!result.Success) return BadRequest(result.Message);
+
+            var itemResource = _mapper.Map<Item, ItemResource>(result.Item);
+            return Ok(itemResource);
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveItemResource resource)
         {
